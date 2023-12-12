@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>系列</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js" integrity="sha512-EmNxF3E6bM0Xg1zvmkeYD3HDBeGxtsG92IxFt1myNZhXdCav9MzvuH/zNMBU1DmIPN6njrhX1VTbqdJxQ2wHDg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        #chart {
+            width: 800px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div id="chart"></div>
+</body>
+<script>
+    const chartDom = document.getElementById('chart')
+    const chart = echarts.init(chartDom)
+    const data_pie = [
+        {
+            name: '安卓',
+            value: 50,
+        },
+        {
+            name: 'ios',
+            value: 50
+        },
+        {
+            name: '小程序',
+            value: 50
+        },
+        {
+            name: '直播间',
+            value: 50
+        },
+        {
+            name: 'web',
+            value: 50
+        }
+    ]
+    const data_line = [99, 78, 130, 89, 65]
+    const data_bar = [90, 88, 45, 98, 77]
+    chart.setOption({
+        title: {
+            text: 'Echarts多系列案例',
+            subtext: '每天进步一点点'
+        },
+        xAxis: {
+            data: ['食品', '数码', '服饰', '箱包', '家具']
+        },
+        yAxis: {},
+        grid: {
+            top: 100,
+            left: '10%',
+            right: '10%',
+            bottom: 100
+        },
+        series: [
+            {
+                name: '饼图',
+                type: 'pie',
+                center: ['65%', 80],
+                radius: 35,
+                data: data_pie
+            },
+            {
+                name: '折线图',
+                type: 'line',
+                data: data_line
+            },
+            {
+                name: '柱状图',
+                type: 'bar',
+                data: data_bar
+            }
+        ]
+    })
+</script>
+</html>
