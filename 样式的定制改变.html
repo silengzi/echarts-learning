@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>组件</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"
-        integrity="sha512-EmNxF3E6bM0Xg1zvmkeYD3HDBeGxtsG92IxFt1myNZhXdCav9MzvuH/zNMBU1DmIPN6njrhX1VTbqdJxQ2wHDg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>样式的定制改变</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js" integrity="sha512-EmNxF3E6bM0Xg1zvmkeYD3HDBeGxtsG92IxFt1myNZhXdCav9MzvuH/zNMBU1DmIPN6njrhX1VTbqdJxQ2wHDg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <style>
         #chart {
             width: 800px;
@@ -15,7 +12,6 @@
         }
     </style>
 </head>
-
 <body>
     <div id="chart"></div>
 </body>
@@ -25,11 +21,11 @@
     chart.setOption({
         dataset: {
             source: [
-                ['食品', 99, 90, '安卓', 50],
-                ['数码', 78, 88, 'ios', 50],
+                ['食品', 199, 140, '安卓', 50],
+                ['数码', 278, 88, 'ios', 50],
                 ['服饰', 130, 45, '小程序', 50],
-                ['箱包', 89, 98, '直播间', 50],
-                ['家具', 65, 77, 'web', 50],
+                ['箱包', 189, 98, '直播间', 50],
+                ['家具', 165, 77, 'web', 50],
             ]
         },
         title: {
@@ -38,15 +34,38 @@
         },
         xAxis: {type: 'category'},
         yAxis: {},
+        grid: {
+            top: 100,
+            left: '10%',
+            right: '19%',
+            bottom: 100
+        },
         series: [
             {
                 name: '饼图',
                 type: 'pie',
-                center: ['65%', 80],
-                radius: 35,
                 encode: {
                     itemName: 3,
                     value: 4
+                },
+                radius: [35, 55],
+                center: ['65%',80],
+                color: ['#56a4f3', '#5aeeb7', '#ffe281', '#fd739f', '#aabbcc'],
+                itemStyle: {
+                    shadowColor: 'rgba(0, 0, 0, 0.25)',
+                    shadowBlur: 10
+                },
+                label: {
+                    show: true,
+                    position: 'center',
+                    color: '#666',
+                    fontWeight: 600,
+                    lineHeight: 20,
+                    fontSize: 12,
+                    formatter: () => {
+                        let str = "累计量" + "\n" + 200
+                        return str
+                    }
                 }
             },
             {
@@ -55,7 +74,15 @@
                 encode: {
                     x: 0,
                     y: 1
-                }
+                },
+                symbol: 'circle',
+                symbolSize: 7,
+                itemStyle: {
+                    borderColor: '#fff',
+                    borderWidth: 2
+                },
+                color: '#73deb4',
+                smooth: true,
             },
             {
                 name: '柱状图',
@@ -63,11 +90,11 @@
                 encode: {
                     x: 0,
                     y: 2
-                }
-            },
+                },
+                color: '#ff5858'
+            }
         ],
-        
-        // 图例
+
         legend: {
             data: [
                 {
@@ -83,38 +110,32 @@
             left: 300
         },
 
-        // 工具栏
         toolbox: {
             feature: {
                 saveAsImage: {},
                 dataZoom: {
-                    yAxisIndex: false,
-                    // xAxisIndex: false,
+                    yAxisIndex: false
                 },
-                restore: {},
+                restore: {}
             }
         },
 
-        // 区域缩放
         dataZoom: [{
             show: true,
             start: 0,
-            end: 50
+            end: 100
         }],
 
-        // 提示框
         tooltip: {
             show: true
         },
-
         // 定位
         grid: {
             top: 150,
             left: '10%',
             right: '10%',
             bottom: 150
-        }
+        },
     })
 </script>
-
 </html>
