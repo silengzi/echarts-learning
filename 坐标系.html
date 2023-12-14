@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>坐标系</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js" integrity="sha512-EmNxF3E6bM0Xg1zvmkeYD3HDBeGxtsG92IxFt1myNZhXdCav9MzvuH/zNMBU1DmIPN6njrhX1VTbqdJxQ2wHDg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        #chart1, #chart2 {
+            width: 800px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div id="chart1"></div>
+    <div id="chart2"></div>
+</body>
+<script>
+    // 双坐标系
+    const chart1Dom = document.getElementById('chart1')
+    const chart1 = echarts.init(chart1Dom)
+    const option1 = {
+        dataset: {
+            source: [   
+                ['product', '2012', '2013', '2014', '2015'],
+                ['Matcha Latte', 41.1, 30.4, 65.1, 53.3],
+                ['Mike Tea', 86.5, 92.1, 85.7, 83.1]
+            ]
+        },
+        legend: {},
+        tooltip: {},
+        xAxis: {
+            type: 'category'
+        },
+        yAxis: [
+            {
+                min: 0,
+                max: 100
+            },
+            {
+                min: 0,
+                max: 100
+            }
+        ],
+        series: [
+            {
+                type: 'bar',
+                seriesLayoutBy: 'row',
+                yAxisIndex: 0
+            },
+            {
+                type: 'line',
+                seriesLayoutBy: 'row',
+                yAxisIndex: 1,
+                symbol: 'circle'
+            }
+        ]
+    }
+    chart1.setOption(option1)
+
+    // 多坐标系
+    const chart2Dom = document.getElementById('chart2')
+    const chart2 = echarts.init(chart2Dom)
+    const option2 = {
+        dataset: {
+            source: [   
+                ['product', '2012', '2013', '2014', '2015'],
+                ['Matcha Latte', 41.1, 30.4, 65.1, 53.3],
+                ['Mike Tea', 86.5, 92.1, 85.7, 83.1]
+            ]
+        },
+        xAxis: [
+            {
+                type: 'category',
+                gridIndex: 0
+            },
+            {
+                type: 'category',
+                gridIndex: 1
+            },
+        ],
+        yAxis: [
+            {
+                min: 0,
+                max: 100,
+                gridIndex: 0
+            },
+            {
+                splitLine: {
+                    show: false, 
+                },
+                gridIndex: 0
+            },
+            {
+                min: 0,
+                max: 150,
+                gridIndex: 1
+            }
+        ],
+        grid: [
+            {
+                bottom: '55%'
+            },
+            {
+                top: '55%'
+            }
+        ],
+        series: [
+            {
+                type: 'bar',
+                seriesLayoutBy: 'row',
+                xAxisIndex: 0,
+                yAxisIndex: 0
+            },
+            {
+                type: 'line',
+                seriesLayoutBy: 'row',
+                xAxisIndex: 0,
+                yAxisIndex: 1
+            },
+            {
+                type: 'bar',
+                seriesLayoutBy: 'row',
+                xAxisIndex: 1,
+                yAxisIndex: 2
+            },
+        ],
+        legend: {},
+        tooltip: {}
+    }
+    chart2.setOption(option2)
+</script>
+</html>
